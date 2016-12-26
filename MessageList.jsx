@@ -36,9 +36,6 @@ MessageList = React.createClass({
   render() {
     return (
       <div className="container">
-        <header>
-          <h2>Messages</h2>
-        </header>
 
         {this.renderForm()}
 
