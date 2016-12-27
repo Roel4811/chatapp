@@ -36,12 +36,13 @@ MessageList = React.createClass({
   render() {
     return (
       <div className="container">
-
-        {this.renderForm()}
+        <h5>Please enter message below</h5>
 
         <ul>
           {this.renderMessages()}
         </ul>
+
+        {this.renderForm()}
       </div>
     );
   }
