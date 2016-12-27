@@ -13,7 +13,12 @@ Meteor.methods({
 
 if (Meteor.isClient) {
   Meteor.startup(function () {
-    ReactDOM.render(<MessageList />,
+    ReactDOM.render(<MessageList name="Roel" />,
       document.getElementById("render-target"));
   });
+
+  Accounts.ui.config({
+    passwordSignupFields: "USERNAME_ONLY"
+  });
+
 }

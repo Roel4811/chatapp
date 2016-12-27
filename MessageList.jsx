@@ -13,6 +13,10 @@ MessageList = React.createClass({
     });
   },
 
+  // renderGreeting() {
+  //   return <Greeting name="Roel" />;
+  // },
+
   handleSubmit(event) {
     event.preventDefault();
 
@@ -36,7 +40,7 @@ MessageList = React.createClass({
   render() {
     return (
       <div className="container">
-        <h5>Please enter message below</h5>
+        <Greeting name="Roel" />
 
         <ul>
           {this.renderMessages()}
