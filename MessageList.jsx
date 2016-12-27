@@ -13,17 +13,11 @@ MessageList = React.createClass({
     });
   },
 
-  // renderGreeting() {
-  //   return <Greeting name="Roel" />;
-  // },
-
   handleSubmit(event) {
     event.preventDefault();
 
     let message = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
-
     Meteor.call("addMessage", message);
-
     ReactDOM.findDOMNode(this.refs.textInput).value = "";
   },
 
@@ -40,7 +34,8 @@ MessageList = React.createClass({
   render() {
     return (
       <div className="container">
-        <Greeting name="Roel" />
+        <Greeting name="Roel" signedIn={false} />
+        <Signin />
 
         <ul>
           {this.renderMessages()}

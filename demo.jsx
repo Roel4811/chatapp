@@ -1,4 +1,5 @@
 Messages = new Mongo.Collection("Messages", {});
+Users = new Mongo.Collection("Users", {});
 
 Meteor.methods({
   addMessage(text) {
@@ -8,12 +9,20 @@ Meteor.methods({
     };
 
     Messages.insert(message);
+  },
+
+  addUser(name) {
+    let user = {
+      name: name
+    };
+
+    Users.insert(user);
   }
 });
 
 if (Meteor.isClient) {
   Meteor.startup(function () {
-    ReactDOM.render(<MessageList name="Roel" />,
+    ReactDOM.render(<MessageList />,
       document.getElementById("render-target"));
   });
 
