@@ -34,8 +34,10 @@ MessageList = React.createClass({
   render() {
     return (
       <div className="container">
-        <Greeting name="Roel" signedIn={false} />
+        <Greeting name="Roel" />
         <Signin />
+        <br />
+        <button> Sign in </button>
 
         <ul>
           {this.renderMessages()}
