@@ -3,13 +3,20 @@ MessageList = React.createClass({
 
   getMeteorData() {
     return {
-      messages: Messages.find({}).fetch()
+      messages: Messages.find({}).fetch(),
+      users: Users.find({}).fetch()
     }
   },
 
   renderMessages() {
     return this.data.messages.map((message) => {
       return <Message key={message._id} message={message} />;
+    });
+  },
+
+  renderUsers() {
+    return this.data.users.map((user) => {
+      return <User key={user._id} user={user} />;
     });
   },
 
@@ -31,20 +38,31 @@ MessageList = React.createClass({
       </form>
   },
 
+  signOut() {
+    name = this.data.users[this.data.users.length-1];
+    Meteor.call("updateUser", name);
+  },
+
   render() {
     return (
       <div className="container">
         <Greeting name="Roel" />
-        <Signin />
-        <br />
-        <button> Sign in </button>
-
+        <SignIn />
+        <br/>
+        <button onClick={this.signOut}> sign out </button>
         <ul>
           {this.renderMessages()}
         </ul>
 
         {this.renderForm()}
-      </div>
+        <br/>
+        <p>Other users: </p>
+
+        <ul>
+          {this.renderUsers()}
+        </ul>
+
+        </div>
     );
   }
 });

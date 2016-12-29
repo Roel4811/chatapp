@@ -7,9 +7,15 @@ Message = React.createClass({
     return moment(time).format('h:mm A');
   },
 
+  handleClick(event) {
+    event.preventDefault();
+    let message = this.props.message;
+    Meteor.call("removeMessage", message);
+  },
+
   render() {
     return (
-      <li>{this.formatTime(this.props.message.time)} - {this.props.message.text}</li>
+      <li>{this.formatTime(this.props.message.time)} - {this.props.message.text} <button onClick={this.handleClick}>delete</button></li>
     );
   }
 });

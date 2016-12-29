@@ -13,11 +13,21 @@ Meteor.methods({
 
   addUser(name) {
     let user = {
-      name: name
+      name: name,
+      online: "online"
     };
 
     Users.insert(user);
+  },
+
+  updateUser(name) {
+    Users.remove(name);
+  },
+
+  removeMessage(message) {
+    Messages.remove(message);
   }
+
 });
 
 if (Meteor.isClient) {

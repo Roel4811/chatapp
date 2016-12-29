@@ -1,4 +1,4 @@
-Signin = React.createClass( {
+SignIn = React.createClass( {
   getInitialState() {
     return {
       signedIn: false,
@@ -14,10 +14,10 @@ Signin = React.createClass( {
     ReactDOM.findDOMNode(this.refs.nameInput).value = "";
   },
 
-  toggleSignin() {
-    var newStatus = this.state.signedIn == false ? true : false;
-    this.setState({ signedIn: true });
-  },
+  // toggleSignin() {
+  //   var newStatus = this.state.signedIn == false ? true : false;
+  //   this.setState({ signedIn: newStatus });
+  // },
 
   render() {
   return <form onSubmit={this.handleSignin} >
