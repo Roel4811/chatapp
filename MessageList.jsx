@@ -3,7 +3,8 @@ MessageList = React.createClass({
 
   getMeteorData() {
     return {
-      messages: Messages.find({}).fetch()
+      messages: Messages.find({}).fetch(),
+      users: Users.find({}).fetch()
     }
   },
 
@@ -13,13 +14,17 @@ MessageList = React.createClass({
     });
   },
 
+  renderUsers() {
+    return this.data.users.map((user) => {
+      return <User key={user._id} user={user} />;
+    });
+  },
+
   handleSubmit(event) {
     event.preventDefault();
 
     let message = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
-
     Meteor.call("addMessage", message);
-
     ReactDOM.findDOMNode(this.refs.textInput).value = "";
   },
 
@@ -33,19 +38,31 @@ MessageList = React.createClass({
       </form>
   },
 
+  signOut() {
+    name = this.data.users[this.data.users.length-1];
+    Meteor.call("updateUser", name);
+  },
+
   render() {
     return (
       <div className="container">
-        <header>
-          <h2>Messages</h2>
-        </header>
-
-        {this.renderForm()}
-
+        <Greeting name="Roel" />
+        <SignIn />
+        <br/>
+        <button onClick={this.signOut}> sign out </button>
         <ul>
           {this.renderMessages()}
         </ul>
-      </div>
+
+        {this.renderForm()}
+        <br/>
+        <p>Other users: </p>
+
+        <ul>
+          {this.renderUsers()}
+        </ul>
+
+        </div>
     );
   }
 });
