@@ -8,6 +8,25 @@ MessageList = React.createClass({
     }
   },
 
+  getInitialState() {
+    return {
+      status: "offline",
+      userName: "new user"
+    };
+  },
+
+  changeStatus(newStatus) {
+    this.setState({
+      status: newStatus
+    });
+  },
+
+  setUserName(userName) {
+    this.setState({
+      userName: userName
+    });
+  },
+
   renderMessages() {
     return this.data.messages.map((message) => {
       return <Message key={message._id} message={message} />;
@@ -38,31 +57,30 @@ MessageList = React.createClass({
       </form>
   },
 
-  signOut() {
-    name = this.data.users[this.data.users.length-1];
-    Meteor.call("updateUser", name);
-  },
-
   render() {
     return (
       <div className="container">
-        <Greeting name="Roel" />
-        <SignIn />
-        <br/>
-        <button onClick={this.signOut}> sign out </button>
-        <ul>
-          {this.renderMessages()}
-        </ul>
+        <div className="greeting">
+          <Greeting userName={this.state.userName} status={this.state.status} />
+          <SignIn onSet={this.setUserName} onChange={this.changeStatus} />
+          <br/>
 
-        {this.renderForm()}
-        <br/>
-        <p>Other users: </p>
-
-        <ul>
-          {this.renderUsers()}
-        </ul>
-
+          <div className="messages">
+            <ul>
+              {this.renderMessages()}
+            </ul>
+            {this.renderForm()}
+          </div>
         </div>
+
+        <div className="sidebar">
+          <h1>All users: </h1>
+          <ul>
+            {this.renderUsers()}
+          </ul>
+        </div>
+
+      </div>
     );
   }
 });

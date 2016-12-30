@@ -20,10 +20,6 @@ Meteor.methods({
     Users.insert(user);
   },
 
-  updateUser(name) {
-    Users.remove(name);
-  },
-
   removeMessage(message) {
     Messages.remove(message);
   }

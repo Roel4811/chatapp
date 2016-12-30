@@ -17,9 +17,13 @@ body {
 }
 
 .container {
-  max-width: 600px;
-  margin: 0 auto;
-  min-height: 100%;
+  padding: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.greeting {
+  width: 50%;
   background: white;
 }
 
@@ -49,6 +53,10 @@ form {
   position: relative;
 }
 
+select {
+  margin-left: 20px;
+}
+
 ul {
   margin: 0;
   padding: 0;
@@ -62,20 +70,8 @@ li {
   border-bottom: #eee solid 1px;
 }
 
-li .text {
-  margin-left: 10px;
+button {
+  border-radius: 6px;
+  position: absolute;
+  right: 50px;
 }
-
-li.checked {
-  color: #888;
-}
-
-li.checked .text {
-  text-decoration: line-through;
-}
-
-li.private {
-  background: #eee;
-  border-color: #ddd;
-}
-
